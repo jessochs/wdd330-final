@@ -1,14 +1,11 @@
 import { renderListWithTemplate } from "./utils.mjs";
 
 function makeupCardTemplate(makeup) {
-    return `<li class=makeup-card>
+    return `<li class="makeup-card">
     <img src="${makeup.api_featured_image}"
          alt="Image of ${makeup.name}"/>
     
          <h2 class="card-info">${makeup.brand} ${makeup.name}</h2>
-         <h3 class="card-info">${makeup.product_type}</h3>
-         <p class="card-info">${makeup.description}</p>
-         <a href="${makeup.product_link}">Website Link</a>
          <p class="card-info">$ ${makeup.price}</p>
      </li>`;
 }
