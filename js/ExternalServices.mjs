@@ -8,27 +8,34 @@ async function convertToJson(res) {
     }
 }
 
-export async function findProductType(product) {
-    const response = await fetch(baseURL + `?product_type={product}`);
-    const data = await convertToJson(response);
-    return data.Result;
+export default class ExternalServices {
+    constructor(category) {
+        // this.brand = brand;
+    }
+
+    async findBrand(category) {
+        const response = await fetch(baseURL + `?brand={category}`);
+        const data = await convertToJson(response);
+        return data.Result;
+    }
     
+     async findProductType(product) {
+        const response = await fetch(baseURL + `?product_type={product}`);
+        const data = await convertToJson(response);
+        return data.Result;
+    }
+    async brandProduct(brand, product) {
+        const response = await fetch(baseURL + `?brand={brand}&product_type={product}`);
+        const data = await convertToJson(response);
+        return data.Result;
+    }
+
+
 }
 
-export async function findBrand(brand) {
-    const response = await fetch(baseURL + `?brand={brand}`);
-    const data = await convertToJson(response);
-    return data.Result;
-}
-
-export async function brandProduct(brand, product) {
-    const response = await fetch(baseURL + `?brand={brand}&product_type={product}`);
-    const data = await convertToJson(response);
-    return data.Result;
-}
 
 // not callable with id?
-export async function makeupId(id) {
-    const response = await fetch(baseURL + `?`)
+// export async function makeupId(id) {
+//     const response = await fetch(baseURL + `?`)
 
-}
+// }
