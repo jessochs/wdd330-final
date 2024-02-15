@@ -16,7 +16,7 @@ function saveTemplate(item) {
     return newItem;
 }
 
-export default class ViewSaved {
+export default class viewSaved {
     constructor(key, parentSelector) {
         this.key = key;
         this.parentSelector = parentSelector;
