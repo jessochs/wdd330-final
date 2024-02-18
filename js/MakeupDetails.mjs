@@ -17,17 +17,17 @@ function makeupDetailsTemplate(makeup) {
 export default class MakeupDetails {
     constructor(productBrand, dataSource) {
         this.productBrand = productBrand;
-        this.product = {};
+        this.makeup = {};
         this.dataSource = dataSource;
     }
 
     async init() {
-        this.product = await this.dataSource.findProductById(this.productBrand);
+        this.makeup = await this.dataSource.findBrand(this.productBrand);
         this.renderMakeupDetails("main");
 
         document
-            .getElementById("addLike")
-            .addEventListener("click", this.addLike.bind(this));
+            .getElementById("saveLike")
+            .addEventListener("click", this.saveLike.bind(this));
 
     } 
 
@@ -37,13 +37,13 @@ export default class MakeupDetails {
         if(!saveContents) {
             saveContents= [];
         }
-        saveContents.push(this.product);
+        saveContents.push(this.makeup);
         setLocalStorage("jo-save", saveContents);
         // add a comment that it has been saved? it should go here if so
     }
 
     renderMakeupDetails(selector) {
         const element = document.querySelector(selector);
-        element.insertAdjacentHTML("afterbegin", makeupDetailsTemplate(this.product));
+        element.insertAdjacentHTML("afterbegin", makeupDetailsTemplate(this.makeup));
     }
 }

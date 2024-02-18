@@ -1,12 +1,11 @@
 import { renderListWithTemplate } from "./utils.mjs";
 
-function makeupCardTemplate(makeup) {
-    return `<li class="makeup-card">
-    <img src="${makeup.api_featured_image}"
-         alt="Image of ${makeup.name}"/>
+function entryCardTemplate(entry) {
+    return `<li class="api-card"
     
-         <h2 class="card-info">${makeup.brand} ${makeup.name}</h2>
-         <p class="card-info">$ ${makeup.price}</p>
+        
+         <h3>${entry.Description}</h3>
+         <p>$ ${entry.Link}</p>
      </li>`;
 }
 
@@ -17,13 +16,15 @@ export default class MakeupList {
         this.listElement = listElement;
     }
     async init() {
-        const list = await this.dataSource.getData(this.category);
+        const list = await this.dataSource.findCategory(this.category);
         this.renderList(list);
 
         document.querySelector(".title").innerHTML = this.category;
 
     }
     renderList(list) {
-        renderListWithTemplate(makeupCardTemplate, this.listElement, list);
+        renderListWithTemplate(entryCardTemplate(), this.listElement, list, 'afterbegin', true);
     }
 }
+
+//  <h2>${entry.API}</h2>

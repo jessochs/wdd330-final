@@ -22,12 +22,20 @@ export function getParam(param) {
 }
 
 export function renderListWithTemplate( templateFn, parentElement, list, position = "afterbegin", clear = false ) {
-    const htmlString = list.map(templateFn);
+    // const entryList = list.map(templateFn);
+    const entryList = list.map((item) => {
+        try {
+          return templateFn(item);
+        } catch (error) {
+          console.error('Error in templateFn:', error);
+          return null; // or handle the error appropriately
+        }
+      });
     if(clear) {
         parentElement.innerHTML = "";
 
     }
-    parentElement.insertAdjacentHTML(position, htmlString.join(""));
+    parentElement.insertAdjacentHTML(position, entryList.join(""));
 }
 
 export function renderWithTemplate(template, parentElement, data, callback) {
