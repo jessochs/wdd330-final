@@ -2,8 +2,6 @@ import { renderListWithTemplate } from "./utils.mjs";
 
 function entryCardTemplate(entry) {
     return `<li class="api-card"
-    
-        
          <h3>${entry.Description}</h3>
          <p>$ ${entry.Link}</p>
      </li>`;
